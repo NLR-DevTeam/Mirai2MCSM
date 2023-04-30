@@ -1,5 +1,3 @@
-# mirai-console-plugin-template
+# Mirai to MCSM
 
-[Mirai Console](https://github.com/mamoe/mirai-console) 插件模板, 使用 Kotlin + Gradle.
-
-[如何使用](https://github.com/project-mirai/how-to-use-plugin-template)
+一个使你可以从QQ控制MCSM面板的插件
