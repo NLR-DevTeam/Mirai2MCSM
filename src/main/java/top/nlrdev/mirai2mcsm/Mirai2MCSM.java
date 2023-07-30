@@ -5,10 +5,14 @@ import net.mamoe.mirai.console.command.CommandManager;
 import net.mamoe.mirai.console.plugin.jvm.JavaPlugin;
 import net.mamoe.mirai.console.plugin.jvm.JvmPluginDescriptionBuilder;
 import net.mamoe.mirai.internal.deps.okhttp3.OkHttpClient;
+import top.nlrdev.mirai2mcsm.commands.ListInstances;
+import top.nlrdev.mirai2mcsm.commands.ListRemotes;
+import top.nlrdev.mirai2mcsm.commands.ProtectedInstanceOperation;
 import top.nlrdev.mirai2mcsm.commands.QueryPanelStatus;
 import top.nlrdev.mirai2mcsm.configs.MCSMConfig;
 import top.nlrdev.mirai2mcsm.configs.PluginConfig;
 
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public final class Mirai2MCSM extends JavaPlugin {
@@ -25,6 +29,7 @@ public final class Mirai2MCSM extends JavaPlugin {
                 .build());
     }
 
+
     @Override
     public void onEnable() {
         getLogger().info("初始化插件中...");
@@ -33,15 +38,12 @@ public final class Mirai2MCSM extends JavaPlugin {
     }
 
     public void initialize() {
-        refreshRemoteInfo();
+        refreshInfo();
         reloadConfigs();
         registerCommands();
-        if(MCSMConfig.INSTANCE.getApiKey.get()==""){
-            getLogger().error("未填写APIKey！请在/config/top.nlrdev.mirai2mcsm/mcsmconfig");
+        if(Objects.equals(MCSMConfig.INSTANCE.getApiKey.get(), "")){
+            getLogger().error("未填写APIKey！请在/config/top.nlrdev.mirai2mcsm/MCSMConfig.yml中填写！");
         }
-    }
-    public void refreshRemoteInfo(){
-
     }
     public void reloadConfigs(){
         reloadPluginConfig(MCSMConfig.INSTANCE);
@@ -49,5 +51,11 @@ public final class Mirai2MCSM extends JavaPlugin {
     }
     public void registerCommands(){
         CommandManager.INSTANCE.registerCommand(QueryPanelStatus.INSTANCE,true);
+        CommandManager.INSTANCE.registerCommand(ListInstances.INSTANCE,true);
+        CommandManager.INSTANCE.registerCommand(ListRemotes.INSTANCE,true);
+        CommandManager.INSTANCE.registerCommand(ProtectedInstanceOperation.INSTANCE,true);
+    }
+    public void refreshInfo(){
+
     }
 }

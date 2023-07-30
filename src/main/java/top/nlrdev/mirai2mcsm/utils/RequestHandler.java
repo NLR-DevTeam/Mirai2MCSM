@@ -4,8 +4,10 @@ import net.mamoe.mirai.internal.deps.okhttp3.OkHttpClient;
 import net.mamoe.mirai.internal.deps.okhttp3.Request;
 import net.mamoe.mirai.internal.deps.okhttp3.Response;
 import net.mamoe.mirai.utils.MiraiLogger;
+import org.jetbrains.annotations.Nullable;
 import org.json.JSONObject;
 import top.nlrdev.mirai2mcsm.Mirai2MCSM;
+import top.nlrdev.mirai2mcsm.configs.MCSMConfig;
 
 import java.io.IOException;
 
@@ -14,12 +16,17 @@ public class RequestHandler {
     private static OkHttpClient httpClient = Mirai2MCSM.globalHttpClient;
     public RequestHandler INSTANCE = this;
 
-
+    public static JSONObject handlePostRequest(String inURL, @Nullable String query){
+        String url = MCSMConfig.INSTANCE.getApiUrl+"/api"+inURL+"?apikey="+MCSMConfig.INSTANCE.getApiKey+query;
+        System.out.println(url);
+        Request request = new Request.Builder().url(url).get().build();
+        return callRequest(request);
+    }
     /**
-     * 请求返回处理
+     * 请求及返回处理
      * @return JsonObject
      */
-    public static JSONObject handleRequest(Request request){
+    public static JSONObject callRequest(Request request){
         Response response = null;
         try{
             response = httpClient.newCall(request).execute();
