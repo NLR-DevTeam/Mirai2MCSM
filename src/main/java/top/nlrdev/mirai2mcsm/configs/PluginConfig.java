@@ -7,6 +7,6 @@ public class PluginConfig extends JavaAutoSavePluginConfig {
     public final static PluginConfig INSTANCE = new PluginConfig();
 
     private PluginConfig() {
-        super("Config");
+        super("PluginConfig");
     }
 }

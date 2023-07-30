@@ -1,5 +1,5 @@
 plugins {
-    val kotlinVersion = "1.6.10"
+    val kotlinVersion = "1.8.22"
     kotlin("jvm") version kotlinVersion
     kotlin("plugin.serialization") version kotlinVersion
 
@@ -17,6 +17,6 @@ repositories {
 }
 
 dependencies {
-    implementation("org.json:json:20220924")
-    compileOnly("net.mamoe:mirai-core-jvm:2.13.4")
+    implementation("org.json:json:20230618")
+    compileOnly("net.mamoe:mirai-core-jvm:2.15.0")
 }
