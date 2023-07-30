@@ -31,22 +31,20 @@ public class RequestHandler {
             logger.error("请求返回为空");
             return null;
         }
-        System.out.println(response);
         JSONObject json = null;
         try {
-            System.out.println(response.body().string());
             json = new JSONObject(response.body().string());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        switch (json.getString("status")) {
-            case"400":
+        switch (json.getInt("status")) {
+            case 400:
                 logger.error("请求参数不正确");
                 return null;
-            case"403":
+            case 403:
                 logger.error("无权限");
                 return null;
-            case"500":
+            case 500:
                 logger.error("内部服务器错误");
                 return null;
         }
