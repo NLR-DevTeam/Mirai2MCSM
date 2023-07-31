@@ -14,7 +14,6 @@ import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeoutException;
-import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Consumer;
 
 public class MessageListener {
@@ -22,13 +21,12 @@ public class MessageListener {
     private final long createTime = System.currentTimeMillis();
     private MessageChain message = null;
 
-    public static String askForString(CommandSender sender,String question){
+    public static void askForString(CommandSender sender, String question, Consumer<String> onAnswer) {
         sender.sendMessage(question);
-        AtomicReference<String> content = null;
         new MessageListener().getNextMessage(sender,
-                message -> content.set(message.contentToString()),
-                exception -> sender.sendMessage("获取超时,请重试"), 15000);
-        return content.toString();
+                message -> onAnswer.accept(message.contentToString()),
+                exception -> sender.sendMessage("获取超时,请重试"),
+                15000);
     }
 
     public void getNextMessage(CommandSender sender, Consumer<MessageChain> onSuccess, Consumer<Exception> onTimeout, long timeout) {

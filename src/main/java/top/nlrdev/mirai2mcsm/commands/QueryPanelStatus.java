@@ -15,7 +15,7 @@ public class QueryPanelStatus extends JRawCommand {
     public static final QueryPanelStatus INSTANCE = new QueryPanelStatus();
 
     private QueryPanelStatus() {
-        super(Mirai2MCSM.INSTANCE, "queryStatus","面板状态","查询面板状态");
+        super(Mirai2MCSM.INSTANCE, "queryStatus", "面板状态", "查询面板状态");
         setUsage("(/)面板状态");
         setDescription("查询面板状态");
         setPrefixOptional(true);
@@ -23,14 +23,21 @@ public class QueryPanelStatus extends JRawCommand {
 
     @Override
     public void onCommand(@NotNull CommandSender sender, @NotNull MessageChain args) {
-        String url = MCSMConfig.INSTANCE.getApiUrl.get()+"/api/overview?apikey="+MCSMConfig.INSTANCE.getApiKey.get();
+        String url = MCSMConfig.INSTANCE.apiUrl.get() + "/api/overview?apikey=" + MCSMConfig.INSTANCE.apiKey.get();
         Request request = new Request.Builder().url(url).get().build();
         JSONObject json = RequestHandler.callRequest(request);
-        JSONObject data = null;
-        if (json == null||json.getInt("status")!=200) {
-            sender.sendMessage("状态：运行异常\n返回值："+json.getInt("status"));
+        JSONObject data;
+
+        if (json == null || json.getInt("status") != 200) {
+            if (json != null) {
+                sender.sendMessage("状态：运行异常\n返回值：" + json.getInt("status"));
+            } else {
+                sender.sendMessage("状态：运行异常\n连接失败。");
+            }
+
             return;
         }
+
         data = json.getJSONObject("data");
         MessageChainBuilder messageChainBuilder = new MessageChainBuilder()
                 .append("---==面板状态==---")

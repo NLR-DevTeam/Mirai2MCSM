@@ -12,49 +12,60 @@ import top.nlrdev.mirai2mcsm.configs.MCSMConfig;
 import java.io.IOException;
 
 public class RequestHandler {
-    private static MiraiLogger logger = Mirai2MCSM.INSTANCE.getLogger();
-    private static OkHttpClient httpClient = Mirai2MCSM.globalHttpClient;
+    private static final MiraiLogger logger = Mirai2MCSM.INSTANCE.getLogger();
+    private static final OkHttpClient httpClient = Mirai2MCSM.globalHttpClient;
     public RequestHandler INSTANCE = this;
 
-    public static JSONObject handlePostRequest(String inURL, @Nullable String query){
-        String url = MCSMConfig.INSTANCE.getApiUrl+"/api"+inURL+"?apikey="+MCSMConfig.INSTANCE.getApiKey+query;
+    public static JSONObject handleGetRequest(String inURL, @Nullable String query) {
+        String url = MCSMConfig.INSTANCE.apiUrl + "/api" + inURL + "?apikey=" + MCSMConfig.INSTANCE.apiKey + query;
         System.out.println(url);
         Request request = new Request.Builder().url(url).get().build();
         return callRequest(request);
     }
+
     /**
      * 请求及返回处理
+     *
      * @return JsonObject
      */
-    public static JSONObject callRequest(Request request){
-        Response response = null;
-        try{
+    public static JSONObject callRequest(Request request) {
+        Response response;
+        try {
             response = httpClient.newCall(request).execute();
-        }catch (RuntimeException | IOException e){
+        } catch (RuntimeException | IOException e) {
             logger.error("请求发起失败");
             throw new RuntimeException(e);
         }
-        if(response.body() == null){
+
+        if (response.body() == null) {
             logger.error("请求返回为空");
             return null;
         }
-        JSONObject json = null;
+
+        JSONObject json;
         try {
             json = new JSONObject(response.body().string());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
         switch (json.getInt("status")) {
-            case 400:
+            case 400 -> {
                 logger.error("请求参数不正确");
                 return null;
-            case 403:
-                logger.error("无权限");
+            }
+
+            case 403 -> {
+                logger.error("没有权限");
                 return null;
-            case 500:
+            }
+
+            case 500 -> {
                 logger.error("内部服务器错误");
                 return null;
+            }
         }
+
         return json;
     }
 }
