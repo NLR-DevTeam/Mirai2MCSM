@@ -9,7 +9,7 @@ Mirai to MCSM它来了！
 一个使你可以从QQ控制MCSM面板的插件
 
 ## 相关链接
-> [Mirai Forum 介绍帖]()
+> [Mirai Forum 介绍帖](https://mirai.mamoe.net/topic/2400/mirai2mcsm-%E6%8F%90%E4%BE%9Bmirai%E5%AF%B9%E6%8E%A5mcsm%E9%9D%A2%E6%9D%BF%E7%9A%84%E6%8F%92%E4%BB%B6)
 
 > [NLRDev](https://www.nlrdev.top)
 ## 使用方法
