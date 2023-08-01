@@ -9,9 +9,9 @@ Mirai to MCSM它来了！
 一个使你可以从QQ控制MCSM面板的插件
 
 ## 相关链接
-> [Mirai Forum 介绍帖]
+> [Mirai Forum 介绍帖]()
 
-> [NLR Dev](www.nlrdev.top)
+> [NLRDev](https://www.nlrdev.top)
 ## 使用方法
 ### 部署
 - 部署[Mirai Console Loader](https://github.com/iTXTech/mirai-console-loader);
@@ -21,7 +21,7 @@ Mirai to MCSM它来了！
 - - 登录MCSM面板
 - - 点击右上角账户 进入个人资料
 - - 点击API接口密钥处的生成密钥并复制
-- - 填入插件配置中的相应位置
+- - 填入`/config/top.nlrdev.mirai2mcsm/MCSMConfig.yml`中的相应位置
 - 参阅[权限说明文档](https://docs.mirai.mamoe.net/console/Permissions.html), 赋予相对应的权限
 - 开始使用吧!
 ### 命令
@@ -45,7 +45,7 @@ Tips：
   - 描述：MCSM面板的APIKey，必填，连接至MCSM的必须密钥
   - 默认值：`空`
 - `APIUrl`
-  - 描述：MCSM面板的链接，形如http://example.com:23333，默认为本机面板
+  - 描述：MCSM面板的链接，形如`http://example.com:23333`，默认为本机面板
   - 默认值：`http://127.0.0.1:23333`
 ### PluginConfig.yml
 - `UseForwardMessage`
@@ -57,4 +57,5 @@ Tips：
 
 
 ## 更多
-您可加入我们的 [QQ社群](https://join.nlrdev.top/) 了解更多
+- 此插件正在开发，未来会加入更多的功能，可以提出issue以催更（不是）
+- 您可加入我们的 [QQ社群](https://join.nlrdev.top/) 了解更多
