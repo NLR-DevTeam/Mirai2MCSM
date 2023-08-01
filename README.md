@@ -20,8 +20,8 @@ Mirai to MCSM它来了！
 
 ### 部署
 
-- 部署 [Mirai Console Loader](https://github.com/iTXTech/mirai-console-loader);
-- 安装前置插件 [Chat Command](https://github.com/project-mirai/chat-command);
+- 部署 [Mirai Console Loader](https://github.com/iTXTech/mirai-console-loader)
+- 安装前置插件 [Chat Command](https://github.com/project-mirai/chat-command)
 - 在 Releases 中下载最新的插件, 放入 MCL 根目录下的 `plugins` 文件夹中
 - 为插件配置 APIKey 密钥
   - 登录您的 MCSManager 面板
@@ -38,10 +38,10 @@ Mirai to MCSM它来了！
   
   |指令|描述|权限节点|
   |:--|:--|:--|
-  |`/queryStatus`<br/>`/面板状态`|**查看面板状态**|`top.nlrdev.mirai2mcsm:command.querystatus`|
-  |`/listRemotes`<br/>`/listre`<br/>`/守护进程列表`|**列出守护进程列表**|`top.nlrdev.mirai2mcsm:command.listremotes`|
-  |`/listInstances <uuid> [page]`<br/>`/listInstances <uuid> [page]`<br/>`/实例列表 <uuid> [page]`|**列出实例列表**|`top.nlrdev.mirai2mcsm:command.listinstances`|
-  |`/operateInstance <operation> <remote_uuid> <uuid>` <br/> `/opinst <operation> <remote_uuid> <uuid>` <br/> `/实例操作 <operation> <remote_uuid> <uuid>`|**操作一个实例**<br/>操作类型：`open` `stop` `restart`  `kill`|`top.nlrdev.mirai2mcsm:command.operateinstance`|
+  |- `/queryStatus`<br/>- `/面板状态`|**查看面板状态**|`top.nlrdev.mirai2mcsm:command.querystatus`|
+  |- `/listRemotes`<br/>- `/listre`<br/>- `/守护进程列表`|**列出守护进程列表**|`top.nlrdev.mirai2mcsm:command.listremotes`|
+  |- `/listInstances <uuid> [page]`<br/>- `/listInstances <uuid> [page]`<br/>- `/实例列表 <uuid> [page]`|**列出实例列表**|`top.nlrdev.mirai2mcsm:command.listinstances`|
+  |- `/operateInstance <operation> <remote_uuid> <uuid>`<br/>- `/opinst <operation> <remote_uuid> <uuid>`<br/>- `/实例操作 <operation> <remote_uuid> <uuid>`|**操作一个实例**<br/>操作类型：`open` `stop` `restart`  `kill`|`top.nlrdev.mirai2mcsm:command.operateinstance`|
 
 
 ## 配置文件
