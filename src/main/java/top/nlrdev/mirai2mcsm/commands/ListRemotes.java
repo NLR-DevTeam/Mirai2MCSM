@@ -36,7 +36,7 @@ public class ListRemotes extends JRawCommand {
         for (int i = 0; i < data.length(); i++) {
             JSONObject object = data.getJSONObject(i);
             messageChainBuilder.append("守护进程uuid：").append(object.getString("uuid"))
-                    .append("\n    守护进程序号：").append((char) i)
+                    .append("\n    守护进程序号：").append(String.valueOf(i))
                     .append("\n    守护进程名：").append(object.getString("remarks"))
                     .append("\n    IP：").append(object.getString("ip")).append(":").append(String.valueOf(object.getInt("port")))
                     .append("\n    是否在线：")

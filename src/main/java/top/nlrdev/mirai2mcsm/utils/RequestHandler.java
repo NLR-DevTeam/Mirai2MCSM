@@ -8,6 +8,7 @@ import org.jetbrains.annotations.Nullable;
 import org.json.JSONObject;
 import top.nlrdev.mirai2mcsm.Mirai2MCSM;
 import top.nlrdev.mirai2mcsm.configs.MCSMConfig;
+import top.nlrdev.mirai2mcsm.configs.PluginConfig;
 
 import java.io.IOException;
 
@@ -18,7 +19,7 @@ public class RequestHandler {
 
     public static JSONObject handleGetRequest(String inURL, @Nullable String query) {
         String url = MCSMConfig.INSTANCE.apiUrl + "/api" + inURL + "?apikey=" + MCSMConfig.INSTANCE.apiKey + query;
-        System.out.println(url);
+       if (PluginConfig.INSTANCE.isDebugMode.get()) System.out.println(url);
         Request request = new Request.Builder().url(url).get().build();
         return callRequest(request);
     }
@@ -42,30 +43,30 @@ public class RequestHandler {
             return null;
         }
 
-        JSONObject json;
+        JSONObject json = null;
         try {
             json = new JSONObject(response.body().string());
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            if (PluginConfig.INSTANCE.isDebugMode.get()) throw new RuntimeException(e);
         }
+        if (PluginConfig.INSTANCE.isDebugMode.get()) {
+            switch (json.getInt("status")) {
+                case 400 -> {
+                    logger.error("请求参数不正确");
+                    return null;
+                }
 
-        switch (json.getInt("status")) {
-            case 400 -> {
-                logger.error("请求参数不正确");
-                return null;
-            }
+                case 403 -> {
+                    logger.error("没有权限");
+                    return null;
+                }
 
-            case 403 -> {
-                logger.error("没有权限");
-                return null;
-            }
-
-            case 500 -> {
-                logger.error("内部服务器错误");
-                return null;
+                case 500 -> {
+                    logger.error("内部服务器错误");
+                    return null;
+                }
             }
         }
-
         return json;
     }
 }

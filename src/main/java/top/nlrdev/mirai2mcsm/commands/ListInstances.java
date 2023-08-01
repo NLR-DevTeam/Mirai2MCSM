@@ -34,10 +34,9 @@ public class ListInstances extends JRawCommand {
                 MessageListener.askForString(sender, "您要查询的守护进程的 UUID 是？", id -> execute(sender, args, id));
                 return;
             }
-
             uuid = Mirai2MCSM.remotes.get(0);
         } else {
-            uuid = args.get(0).contentToString();
+            uuid = Mirai2MCSM.getInstancesUUID(args.get(0).contentToString());
         }
 
         execute(sender, args, uuid);
@@ -68,9 +67,6 @@ public class ListInstances extends JRawCommand {
                 return;
             }
         }
-
-        System.out.println(json);
-
         JSONObject data = json.getJSONObject("data");
         JSONArray instData = data.getJSONArray("data");
         MessageChainBuilder messageChainBuilder = new MessageChainBuilder()

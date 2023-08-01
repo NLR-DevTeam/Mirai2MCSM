@@ -2,6 +2,7 @@ package top.nlrdev.mirai2mcsm;
 
 
 import net.mamoe.mirai.console.command.CommandManager;
+import net.mamoe.mirai.console.plugin.PluginManager;
 import net.mamoe.mirai.console.plugin.jvm.JavaPlugin;
 import net.mamoe.mirai.console.plugin.jvm.JvmPluginDescriptionBuilder;
 import net.mamoe.mirai.internal.deps.okhttp3.OkHttpClient;
@@ -58,15 +59,17 @@ public final class Mirai2MCSM extends JavaPlugin {
         initialize();
         logger.info("初始化插件完毕");
     }
-
+    @Override
+    public void onDisable(){
+        logger.info("正在关闭插件");
+    }
     public void initialize() {
         reloadConfigs();
+        if (Objects.equals(MCSMConfig.INSTANCE.apiKey.get(), "")) {
+            logger.error("未填写 APIKey！请在 /config/top.nlrdev.mirai2mcsm/MCSMConfig.yml 中填写！");
+        }
         refreshInfo();
         registerCommands();
-
-        if (Objects.equals(MCSMConfig.INSTANCE.apiKey.get(), "")) {
-            logger.error("未填写 APIKey！请在 config/top.nlrdev.mirai2mcsm/MCSMConfig.yml 中填写！");
-        }
     }
 
     public void reloadConfigs() {
@@ -91,8 +94,7 @@ public final class Mirai2MCSM extends JavaPlugin {
             refreshRemotesInfo();
             refreshInstancesInfo();
         }catch (Exception e){
-            logger.error("网络连接出错，获取JSON有误");
-            logger.info(e);
+            logger.error("网络连接出错，请检查APIKey与APIURL是否正确填写");
         }
     }
 
@@ -128,9 +130,8 @@ public final class Mirai2MCSM extends JavaPlugin {
     }
 
     public static String getInstancesUUID(String arg) {
-        if (remotes.size() == 1) return remotes.get(0);
-        else {
-            return null;
-        }
+        if (instances.size() == 1) return instances.get(0);
+        if (instances.contains(arg)) return arg;
+        return instancesRemark.getOrDefault(arg,null);
     }
 }
