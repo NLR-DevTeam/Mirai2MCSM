@@ -21,6 +21,8 @@ Mirai to MCSM它来了！
 ### 部署
 
 - 部署 [Mirai Console Loader](https://github.com/iTXTech/mirai-console-loader)
+
+  **重要：请使用 Java 17 运行 MCL 以使用本插件**
 - 安装前置插件 [Chat Command](https://github.com/project-mirai/chat-command)
 - 在 Releases 中下载最新的插件, 放入 MCL 根目录下的 `plugins` 文件夹中
 - 为插件配置 APIKey 密钥
@@ -29,7 +31,7 @@ Mirai to MCSM它来了！
   - 找到「API 接口密钥」，点击「生成密钥」并复制
   - 填入 `/config/top.nlrdev.mirai2mcsm/MCSMConfig.yml` 中的相应位置
 - 参阅 [权限说明文档](https://docs.mirai.mamoe.net/console/Permissions.html)，赋予相对应的权限
-- 开始使用吧!
+- 开始使用吧！
 
 ### 命令
 - 当只有一个守护进程时，`<remote_uuid>` 项可以被省略
