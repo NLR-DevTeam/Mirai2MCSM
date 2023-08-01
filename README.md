@@ -61,9 +61,11 @@ Mirai to MCSM它来了！
 ### `PluginConfig.yml`
 
 - **`UseForwardMessage`**
+  
   - **描述**：是否在群聊中使用消息合并转发以避免消息过长
   - **默认值**：`true`
 - **`IsDebugMode`**
+  
   - **描述**：是否开启调试模式，在调试模式下插件会有更详细的输出以诊断错误
   - **默认值**：`false`
 
