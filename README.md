@@ -49,21 +49,21 @@ Mirai to MCSM它来了！
 
 ### `MCSMConfig.yml`
 
-- `APIKey`
-  - 描述：MCSM面板的APIKey，必填，连接至MCSM的必须密钥
-  - 默认值：`空`
-- `APIUrl`
-  - 描述：MCSM面板的链接，形如`http://example.com:23333`，默认为本机面板
-  - 默认值：`http://127.0.0.1:23333`
+- **`APIKey`**
+  - **描述**：MCSM面板的APIKey，必填，连接至MCSM的必须密钥
+  - **默认值**：`空`
+- **`APIUrl`**
+  - **描述**：MCSM面板的链接，形如`http://example.com:23333`，默认为本机面板
+  - **默认值**：`http://127.0.0.1:23333`
 
 ### `PluginConfig.yml`
 
-- `UseForwardMessage`
-  - 描述：是否在群聊中使用消息合并转发以避免消息过长
-  - 默认值：`true`
-- `IsDebugMode`
-  - 描述：是否开启调试模式，在调试模式下插件会有更详细的输出以诊断错误
-  - 默认值：`false`
+- **`UseForwardMessage`**
+  - **描述**：是否在群聊中使用消息合并转发以避免消息过长
+  - **默认值**：`true`
+- **`IsDebugMode`**
+  - **描述**：是否开启调试模式，在调试模式下插件会有更详细的输出以诊断错误
+  - **默认值**：`false`
 
 
 ## 了解更多
