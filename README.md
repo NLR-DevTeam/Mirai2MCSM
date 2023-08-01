@@ -8,7 +8,6 @@ Mirai to MCSM它来了！
 
 一个使你可以从QQ控制MCSM面板的插件
 
-<br/>
 
 ## 相关链接
 
@@ -16,7 +15,6 @@ Mirai to MCSM它来了！
 
 - [NLR DevTeam 官网](https://www.nlrdev.top)
 
-<br/>
 
 ## 使用方法
 
@@ -34,12 +32,10 @@ Mirai to MCSM它来了！
 - 开始使用吧!
 
 ### 命令
-
-Tips：
-
 - 当只有一个守护进程时，`<remote_uuid>` 项可以被省略
 - 命令缩写用法与命令相同
 - 使用名称代替 UUID 的功能正在开发中
+  
   |指令|描述|权限节点|
   |:--|:--|:--|
   |`/queryStatus`<br/>`/面板状态`|**查看面板状态**|`top.nlrdev.mirai2mcsm:command.querystatus`|
@@ -47,7 +43,6 @@ Tips：
   |`/listInstances <uuid> [page]`<br/>`/listInstances <uuid> [page]`<br/>`/实例列表 <uuid> [page]`|**列出实例列表**|`top.nlrdev.mirai2mcsm:command.listinstances`|
   |`/operateInstance <operation> <remote_uuid> <uuid>` <br/> `/opinst <operation> <remote_uuid> <uuid>` <br/> `/实例操作 <operation> <remote_uuid> <uuid>`|**操作一个实例**<br/>操作类型：`open` `stop` `restart`  `kill`|`top.nlrdev.mirai2mcsm:command.operateinstance`|
 
-<br/>
 
 ## 配置文件
 
@@ -69,7 +64,6 @@ Tips：
   - 描述：是否开启调试模式，在调试模式下插件会有更详细的输出以诊断错误
   - 默认值：`false`
 
-<br/>
 
 ## 了解更多
 
